@@ -1,149 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Manish Fitness & Diet Tracker</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manish Fitness Tracker</title>
   <style>
+    :root {
+      --bg: #121212;
+      --card: #1e1e1e;
+      --text: #e0e0e0;
+      --accent: #4cafef;
+      --muted: #999;
+    }
+
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: #121212;
-      color: #eee;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
     }
+
     header {
-      text-align: center;
-      padding: 20px;
-      background: #1f1f1f;
-      border-bottom: 2px solid #333;
-    }
-    h1 { color: #00ffcc; margin: 0; }
-    h2 { color: #ff9800; margin-top: 40px; }
-    .section {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #1f1f1f;
-      border-radius: 10px;
-    }
-    ul { list-style: none; padding: 0; }
-    li { margin: 10px 0; display: flex; align-items: center; }
-    input[type=checkbox] { margin-right: 10px; }
-    img {
-      max-width: 150px;
-      border-radius: 8px;
-      margin: 10px;
-    }
-    .reminder {
-      background: #333;
+      background: var(--accent);
       padding: 15px;
-      margin-top: 20px;
-      border-left: 5px solid #00ffcc;
-      border-radius: 5px;
-    }
-    footer {
       text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      font-size: 14px;
-      color: #aaa;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .container {
+      padding: 15px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      padding: 10px 0;
+      border-bottom: 1px solid #2a2a2a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+
+    .time {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-right: 10px;
+      min-width: 65px;
+    }
+
+    .task {
+      flex: 1;
+    }
+
+    .btn {
+      background: var(--accent);
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .btn.done {
+      background: #2ecc71;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.1rem;
+      }
+      .card h2 {
+        font-size: 1rem;
+      }
+      .time {
+        min-width: 55px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>💪 Manish's Fitness & Diet Tracker</h1>
-    <p>Daily Calisthenics + Evening Workout + Balanced Diet</p>
-  </header>
+  <header>💪 Manish’s Fitness & Diet Timetable</header>
 
-  <!-- Morning Routine -->
-  <div class="section">
-    <h2>🌅 Morning (6:00–8:30 AM)</h2>
-    <ul>
-      <li><input type="checkbox"> Wake up + Warm water + 5 soaked almonds</li>
-      <li><input type="checkbox"> Pre-workout snack (banana / date + peanut butter)</li>
-      <li><input type="checkbox"> Calisthenics Workout (6:30–8:30 AM)</li>
-      <li><input type="checkbox"> Post-workout breakfast (eggs/paneer + oats/poha + fruit)</li>
-    </ul>
-  </div>
+  <div class="container">
 
-  <!-- Midday -->
-  <div class="section">
-    <h2>☀️ Midday</h2>
-    <ul>
-      <li><input type="checkbox"> 11:30 AM – Buttermilk / Coconut water + nuts</li>
-      <li><input type="checkbox"> 1:30 PM – Lunch (roti, dal, rice, sabzi, salad)</li>
-    </ul>
-  </div>
+    <div class="card">
+      <h2>🌅 Morning Routine</h2>
+      <ul>
+        <li><span class="time">6:00</span><span class="task">Warm water</span><button class="btn">Done</button></li>
+        <li><span class="time">6:10</span><span class="task">Toilet / freshen up</span><button class="btn">Done</button></li>
+        <li><span class="time">6:15</span><span class="task">5–6 soaked almonds</span><button class="btn">Done</button></li>
+        <li><span class="time">6:20</span><span class="task">Pre-workout snack (banana/date + PB)</span><button class="btn">Done</button></li>
+        <li><span class="time">6:30–8:30</span><span class="task">Calisthenics training</span><button class="btn">Done</button></li>
+      </ul>
+    </div>
 
-  <!-- Evening -->
-  <div class="section">
-    <h2>🌇 Evening (5:30–7:15 PM)</h2>
-    <ul>
-      <li><input type="checkbox"> Evening snack (sprouts / corn + green tea)</li>
-      <li><input type="checkbox"> Kegels + Reverse Kegels</li>
-      <li><input type="checkbox"> Push-ups 3–4 sets</li>
-      <li><input type="checkbox"> Squats 3–4 sets</li>
-      <li><input type="checkbox"> Stretching + Breathing</li>
-    </ul>
-  </div>
+    <div class="card">
+      <h2>🍽️ Meals</h2>
+      <ul>
+        <li><span class="time">8:45</span><span class="task">Breakfast – Oats/Poha + eggs</span><button class="btn">Done</button></li>
+        <li><span class="time">13:00</span><span class="task">Lunch – Rice/Roti + dal + veggies + salad</span><button class="btn">Done</button></li>
+        <li><span class="time">17:00</span><span class="task">Snack – Fruit + peanut butter</span><button class="btn">Done</button></li>
+        <li><span class="time">21:30</span><span class="task">Dinner – Light roti/rice + dal/sabji</span><button class="btn">Done</button></li>
+      </ul>
+    </div>
 
-  <!-- Dinner & Night -->
-  <div class="section">
-    <h2>🌙 Night (8:30–10:30 PM)</h2>
-    <ul>
-      <li><input type="checkbox"> Dinner (light roti/rice + protein + sabzi)</li>
-      <li><input type="checkbox"> Warm milk</li>
-      <li><input type="checkbox"> Night Yoga (Mula Bandha + Ashwini Mudra + Relaxation)</li>
-    </ul>
-    <div>
-      <p><strong>Yoga Reference:</strong></p>
-      <img src="https://i.imgur.com/Q1qD8Wb.png" alt="Mula Bandha">
-      <img src="https://i.imgur.com/2VJ6R38.png" alt="Ashwini Mudra">
+    <div class="card">
+      <h2>🏋️ Evening Workout</h2>
+      <ul>
+        <li><span class="time">18:30</span><span class="task">Kegels + Reverse kegels (5 mins)</span><button class="btn">Done</button></li>
+        <li><span class="time">18:40</span><span class="task">Push-ups (3 sets)</span><button class="btn">Done</button></li>
+        <li><span class="time">18:50</span><span class="task">Squats (3 sets)</span><button class="btn">Done</button></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🌙 Night Routine</h2>
+      <ul>
+        <li><span class="time">22:00</span><span class="task">Yoga (Mula Bandha + Ashwini Mudra)</span><button class="btn">Done</button></li>
+        <li><span class="time">22:15</span><span class="task">Stop-Start Training (optional)</span><button class="btn">Done</button></li>
+        <li><span class="time">23:00</span><span class="task">Sleep</span><button class="btn">Done</button></li>
+      </ul>
     </div>
   </div>
 
-  <!-- Reminders -->
-  <div class="section reminder">
-    <h2>🔔 Daily Reminders</h2>
-    <ul>
-      <li>Morning Reminder: Drink warm water + almonds</li>
-      <li>Evening Reminder: Do Kegels + Squats before dinner</li>
-      <li>Night Reminder: Do relaxation yoga before sleep</li>
-    </ul>
-  </div>
-
-  <footer>
-    © 2025 Manish Fitness | Designed for daily self-discipline 💪
-  </footer>
-
   <script>
-    // Reset checkboxes daily
-    const today = new Date().toDateString();
-    if(localStorage.getItem("lastSaved") !== today){
-      localStorage.clear();
-      localStorage.setItem("lastSaved", today);
-    }
-    document.querySelectorAll("input[type=checkbox]").forEach((box, i) => {
-      const saved = localStorage.getItem("cb" + i) === "true";
-      box.checked = saved;
-      box.addEventListener("change", () => {
-        localStorage.setItem("cb" + i, box.checked);
+    // Toggle Done button
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('done');
+        btn.textContent = btn.classList.contains('done') ? '✓' : 'Done';
       });
     });
-
-    // Reminder notifications
-    function notify(msg){
-      if(Notification.permission === "granted"){
-        new Notification("Manish Reminder", { body: msg });
-      }
-    }
-    if(Notification.permission !== "granted"){
-      Notification.requestPermission();
-    }
-    // Example reminders
-    setTimeout(() => notify("🌅 Time for warm water + almonds"), 5000);
-    setTimeout(() => notify("🌇 Evening Kegels & Push-ups time"), 10000);
-    setTimeout(() => notify("🌙 Night Yoga before sleep"), 15000);
   </script>
 </body>
 </html>
