@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Rakesh — Posture Correction (Pelvic Tilt + Duck Feet)</title>
+<title>Manish — Posture Correction (Pelvic Tilt + Duck Feet)</title>
 <style>
   :root{
     --bg:#0f1115; --card:#181b22; --text:#e7e9ee; --muted:#a2a9b6; --accent:#6ee7d9; --accent2:#8ab4ff; --ok:#2ecc71; --line:#262b36;
@@ -35,6 +35,26 @@
     .grid{grid-template-columns:1fr 1fr}
     .two{grid-template-columns:1fr 1fr}
   }
+  
+  #floatingBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 14px 18px;
+  background: var(--accent);
+  color: #000;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  z-index: 10000;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#floatingBtn:hover {
+  background: var(--accent2);
+}
+
 </style>
 </head>
 <body>
@@ -174,9 +194,83 @@
     </ul>
   </div>
 
-
+<button onclick="openStopwatch()" id="floatingBtn">⏱️</button>
 
 </div>
+<div id="stopwatchModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000b3; z-index:9999; justify-content:center; align-items:center;">
+  <div style="background:var(--card); color:var(--text); padding:20px; border-radius:12px; width:90%; max-width:400px; box-shadow:0 0 20px rgba(0,0,0,0.4); text-align:center; position:relative;">
+    <button onclick="closeStopwatch()" style="position:absolute; top:10px; right:10px; background:transparent; border:none; color:var(--muted); font-size:20px; cursor:pointer;">×</button>
+    
+    <h3>⏱️ Custom Timer</h3>
+    <p class="tip">Enter time in seconds and start the stopwatch</p>
+    <input type="number" id="customTime" placeholder="Enter seconds" style="padding:8px; width:80%; border-radius:8px; border:1px solid var(--line); background:var(--bg); color:var(--text); margin-bottom:10px;" />
+
+    <div style="font-size:2rem; margin:12px 0;" id="stopwatchDisplay">00:00</div>
+
+    <div style="display:flex; justify-content:center; gap:10px;">
+      <button onclick="startStopwatch()" style="padding:8px 16px; border-radius:8px; background:var(--accent2); border:none; color:#fff; cursor:pointer;">Start</button>
+      <button onclick="resetStopwatch()" style="padding:8px 16px; border-radius:8px; background:var(--line); border:none; color:var(--text); cursor:pointer;">Reset</button>
+    </div>
+  </div>
+</div>
+<!-- Sound for time up -->
+<audio id="beepSound">
+  <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
+  <source src="https://actions.google.com/sounds/v1/alarms/beep_short.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  let stopwatchInterval;
+  let timeLeft = 0;
+
+  const beepSound = document.getElementById('beepSound');
+
+  function openStopwatch() {
+    document.getElementById('stopwatchModal').style.display = 'flex';
+    document.getElementById('customTime').value = '';
+    resetStopwatch();
+  }
+
+  function closeStopwatch() {
+    document.getElementById('stopwatchModal').style.display = 'none';
+    clearInterval(stopwatchInterval);
+  }
+
+  function startStopwatch() {
+    const input = document.getElementById('customTime').value;
+    const seconds = parseInt(input);
+    if (isNaN(seconds) || seconds <= 0) {
+      alert('Please enter a valid number of seconds.');
+      return;
+    }
+
+    timeLeft = seconds;
+    updateDisplay();
+
+    clearInterval(stopwatchInterval);
+    stopwatchInterval = setInterval(() => {
+      timeLeft--;
+      updateDisplay();
+      if (timeLeft <= 0) {
+        clearInterval(stopwatchInterval);
+        beepSound.play();
+        alert("⏰ Time's up!");
+      }
+    }, 1000);
+  }
+
+  function resetStopwatch() {
+    clearInterval(stopwatchInterval);
+    document.getElementById('stopwatchDisplay').textContent = "00:00";
+  }
+
+  function updateDisplay() {
+    const min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+    const sec = String(timeLeft % 60).padStart(2, '0');
+    document.getElementById('stopwatchDisplay').textContent = `${min}:${sec}`;
+  }
+</script>
 
 <script>
   // Persist "Done" state and compute progress
