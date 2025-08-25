@@ -1,162 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Manish Fitness Tracker</title>
-  <style>
-    :root {
-      --bg: #121212;
-      --card: #1e1e1e;
-      --text: #e0e0e0;
-      --accent: #4cafef;
-      --muted: #999;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background: var(--accent);
-      padding: 15px;
-      text-align: center;
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: #fff;
-    }
-
-    .container {
-      padding: 15px;
-    }
-
-    .card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    }
-
-    .card h2 {
-      margin-top: 0;
-      font-size: 1.1rem;
-      color: var(--accent);
-    }
-
-    ul {
-      padding: 0;
-      list-style: none;
-    }
-
-    li {
-      padding: 10px 0;
-      border-bottom: 1px solid #2a2a2a;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.95rem;
-    }
-
-    li:last-child {
-      border-bottom: none;
-    }
-
-    .time {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-right: 10px;
-      min-width: 65px;
-    }
-
-    .task {
-      flex: 1;
-    }
-
-    .btn {
-      background: var(--accent);
-      border: none;
-      padding: 6px 12px;
-      border-radius: 6px;
-      color: white;
-      cursor: pointer;
-      font-size: 0.8rem;
-    }
-
-    .btn.done {
-      background: #2ecc71;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        font-size: 1.1rem;
-      }
-      .card h2 {
-        font-size: 1rem;
-      }
-      .time {
-        min-width: 55px;
-      }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Manish — Daily Fitness & Diet + Timer</title>
+<style>
+  :root{
+    --bg:#0f1115; --card:#181b22; --text:#e7e9ee; --muted:#a2a9b6; --accent:#6ee7d9; --accent2:#8ab4ff; --ok:#2ecc71; --warn:#ffb74d; --line:#232a36;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif}
+  header{padding:16px;text-align:center;background:linear-gradient(180deg,#141824,#10131a);border-bottom:1px solid var(--line)}
+  header h1{margin:0;font-size:1.15rem;color:var(--accent)}
+  header p{margin:6px 0 0;font-size:.9rem;color:var(--muted)}
+  .wrap{max-width:920px;margin:0 auto;padding:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .card h2{margin:0 0 10px;font-size:1.05rem;color:var(--accent2)}
+  ul{list-style:none;margin:0;padding:0}
+  li{display:flex;align-items:center;gap:10px;border-top:1px solid var(--line);padding:12px 4px}
+  li:first-child{border-top:none}
+  .time{width:86px;flex:0 0 auto;color:var(--muted);font-variant-numeric:tabular-nums}
+  .task{flex:1}
+  .btn{border:1px solid var(--line);background:#202532;color:var(--text);padding:6px 10px;border-radius:10px;cursor:pointer}
+  .btn.done{background:var(--ok);border-color:transparent}
+  .hint{color:var(--muted);font-size:.9rem}
+  .progress{display:flex;justify-content:space-between;align-items:center;margin-top:8px;border:1px dashed var(--line);border-radius:12px;padding:10px}
+  .badge{display:inline-block;border:1px solid var(--line);padding:2px 8px;border-radius:999px;color:var(--muted);font-size:.8rem}
+  .fab{position:fixed;right:16px;bottom:16px;background:var(--accent2);color:#10131a;border:none;border-radius:999px;padding:14px 16px;font-weight:700;box-shadow:0 10px 24px rgba(0,0,0,.35);cursor:pointer}
+  /* Modal */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+  .modal.show{display:flex}
+  .sheet{max-width:520px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .sheet h3{margin:6px 0 12px;color:var(--accent)}
+  .row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .row label{font-size:.9rem;color:var(--muted)}
+  input[type=number]{width:90px;padding:8px;border-radius:10px;border:1px solid var(--line);background:#11151c;color:var(--text)}
+  .sheet .btn{padding:10px 12px}
+  .sheet .btn.ghost{background:#202532}
+  .sheet .timer-face{font-size:2rem;text-align:center;margin:8px 0 12px;letter-spacing:1px}
+  .row .grow{flex:1}
+  .close-x{float:right;background:transparent;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer}
+  .bar{height:8px;background:#0f141d;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+  .bar > span{display:block;height:100%;width:0%;background:var(--accent2);transition:width .25s linear}
+  @media (min-width:720px){
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  }
+</style>
 </head>
 <body>
-  <header>💪 Manish’s Fitness & Diet Timetable</header>
+<header>
+  <h1>Manish — Daily Plan + Custom Stop Timer</h1>
+  <p>Stronger, faster recovery, better posture & stamina</p>
+</header>
 
-  <div class="container">
+<div class="wrap">
 
+  <div class="card">
+    <h2>📊 Today</h2>
+    <div class="progress">
+      <div><strong>Completed:</strong> <span id="doneCount">0</span>/<span id="totalCount">0</span> tasks</div>
+      <div class="badge">Auto-resets daily</div>
+    </div>
+    <p class="hint">Tip: Try to shift dinner earlier (9:30–10:00) for better recovery and sleep.</p>
+  </div>
+
+  <div class="grid">
+    <!-- Morning -->
     <div class="card">
-      <h2>🌅 Morning Routine</h2>
-      <ul>
-        <li><span class="time">6:00</span><span class="task">Warm water</span><button class="btn">Done</button></li>
-        <li><span class="time">6:10</span><span class="task">Toilet / freshen up</span><button class="btn">Done</button></li>
-        <li><span class="time">6:15</span><span class="task">5–6 soaked almonds</span><button class="btn">Done</button></li>
-        <li><span class="time">6:20</span><span class="task">Pre-workout snack (banana/date + PB)</span><button class="btn">Done</button></li>
-        <li><span class="time">6:30–8:30</span><span class="task">Calisthenics training</span><button class="btn">Done</button></li>
+      <h2>🌅 Morning</h2>
+      <ul id="morning">
+        <li><span class="time">05:40</span><span class="task">Wake + toilet/freshen up</span><button class="btn">Done</button></li>
+        <li><span class="time">05:50</span><span class="task">Warm water (optional pinch salt + lemon)</span><button class="btn">Done</button></li>
+        <li><span class="time">05:55</span><span class="task">Banana + 5–6 soaked almonds (add garlic if you prefer)</span><button class="btn">Done</button></li>
+        <li><span class="time">06:40–08:30</span><span class="task">Calisthenics session</span><button class="btn">Done</button></li>
+        <li><span class="time">09:00</span><span class="task">Pineapple juice + <strong>protein</strong> (eggs/paneer/sprouts/whey)</span><button class="btn">Done</button></li>
+        <li><span class="time">09:30–10:00</span><span class="task">Breakfast (oats/poha/paratha + protein)</span><button class="btn">Done</button></li>
       </ul>
     </div>
 
+    <!-- Midday / Evening -->
     <div class="card">
-      <h2>🍽️ Meals</h2>
-      <ul>
-        <li><span class="time">8:45</span><span class="task">Breakfast – Oats/Poha + eggs</span><button class="btn">Done</button></li>
-        <li><span class="time">13:00</span><span class="task">Lunch – Rice/Roti + dal + veggies + salad</span><button class="btn">Done</button></li>
-        <li><span class="time">17:00</span><span class="task">Snack – Fruit + peanut butter</span><button class="btn">Done</button></li>
-        <li><span class="time">21:30</span><span class="task">Dinner – Light roti/rice + dal/sabji</span><button class="btn">Done</button></li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>🏋️ Evening Workout</h2>
-      <ul>
-        <li><span class="time">18:30</span><span class="task">Kegels + Reverse kegels (5 mins)</span><button class="btn">Done</button></li>
-        <li><span class="time">18:40</span><span class="task">Push-ups (3 sets)</span><button class="btn">Done</button></li>
-        <li><span class="time">18:50</span><span class="task">Squats (3 sets)</span><button class="btn">Done</button></li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>🌙 Night Routine</h2>
-      <ul>
-        <li><span class="time">22:00</span><span class="task">Yoga (Mula Bandha + Ashwini Mudra)</span><button class="btn">Done</button></li>
-        <li><span class="time">22:15</span><span class="task">Stop-Start Training (optional)</span><button class="btn">Done</button></li>
-        <li><span class="time">23:00</span><span class="task">Sleep</span><button class="btn">Done</button></li>
+      <h2>☀️ Midday & 🌇 Evening</h2>
+      <ul id="mid">
+        <li><span class="time">13:30</span><span class="task">Lunch — roti/rice + dal/chana/rajma + sabzi + salad</span><button class="btn">Done</button></li>
+        <li><span class="time">17:00</span><span class="task">Snack — fruit + peanuts/roasted chana/paneer/boiled egg</span><button class="btn">Done</button></li>
+        <li><span class="time">19:00</span><span class="task">Light workout: mobility + stretching + pelvic floor (reverse kegel focus)</span><button class="btn">Done</button></li>
+        <li><span class="time">21:30–22:00</span><span class="task">Dinner (target earlier) — light carbs + protein + veggies</span><button class="btn">Done</button></li>
+        <li><span class="time">22:15</span><span class="task">Night yoga (Mula Bandha + Ashwini Mudra), relax breathing</span><button class="btn">Done</button></li>
+        <li><span class="time">23:00</span><span class="task">Sleep (aim 7–8 hrs)</span><button class="btn">Done</button></li>
       </ul>
     </div>
   </div>
 
-  <script>
-    // Toggle Done button
-    document.querySelectorAll('.btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        btn.classList.toggle('done');
-        btn.textContent = btn.classList.contains('done') ? '✓' : 'Done';
-      });
+  <!-- Quick links / tips -->
+  <div class="card">
+    <h2>💡 Mini Tips</h2>
+    <ul>
+      <li>After morning session, always pair carbs (juice) with <strong>protein</strong> for muscle repair.</li>
+      <li>Evening: keep it light—mobility/yoga, not heavy strength (you already train hard AM).</li>
+      <li>Move dinner earlier for better sleep hormones and recovery.</li>
+    </ul>
+  </div>
+</div>
+
+
+<script>
+  // ========= Daily checklist (persistent + auto reset) =========
+  const todayKey = 'dt_' + new Date().toDateString();
+  if(localStorage.getItem('last_day') !== todayKey){
+    // clear only our keys
+    Object.keys(localStorage).forEach(k => { if(k.startsWith('cb_')) localStorage.removeItem(k); });
+    localStorage.setItem('last_day', todayKey);
+  }
+  const buttons = document.querySelectorAll('.btn');
+  const doneEl = document.getElementById('doneCount');
+  const totalEl = document.getElementById('totalCount');
+  const taskButtons = [...buttons].filter(b => b.textContent === 'Done'); // ignore modal buttons
+  totalEl.textContent = taskButtons.length;
+
+  taskButtons.forEach((btn, i) => {
+    const k = 'cb_' + i;
+    if(localStorage.getItem(k) === '1'){ btn.classList.add('done'); btn.textContent = '✓'; }
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('done');
+      const isDone = btn.classList.contains('done');
+      btn.textContent = isDone ? '✓' : 'Done';
+      localStorage.setItem(k, isDone ? '1' : '0');
+      updateCount();
     });
-  </script>
+  });
+  function updateCount(){
+    const done = taskButtons.filter(b => b.classList.contains('done')).length;
+    doneEl.textContent = done;
+  }
+  updateCount();
+
+  // ========= Modal (Timer) =========
+  const modal = document.getElementById('timerModal');
+  const openTimer = document.getElementById('openTimer');
+  const closeTimer = document.getElementById('closeTimer');
+  openTimer.onclick = () => { modal.classList.add('show'); };
+  closeTimer.onclick = () => { modal.classList.remove('show'); stopTimer(true); };
+  modal.addEventListener('click', (e)=>{ if(e.target === modal){ modal.classList.remove('show'); stopTimer(true); }});
+
+  // ========= Timer logic with Web Audio beep =========
+  const face = document.getElementById('face');
+  const bar = document.getElementById('bar');
+  const minEl = document.getElementById('min');
+  const secEl = document.getElementById('sec');
+  const lblEl = document.getElementById('label');
+  const startBtn = document.getElementById('startBtn');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const statusEl = document.getElementById('status');
+
+  let totalMs = 0, leftMs = 0, tId = null, running = false, started = false, ctx = null;
+
+  function fmt(ms){
+    const s = Math.max(0, Math.floor(ms/1000));
+    const m = Math.floor(s/60);
+    const r = s % 60;
+    return (m<10?'0':'') + m + ':' + (r<10?'0':'') + r;
+  }
+
+  function draw(){
+    face.textContent = fmt(leftMs);
+    const p = totalMs ? (1 - (leftMs/totalMs)) * 100 : 0;
+    bar.style.width = Math.min(100, Math.max(0, p)) + '%';
+  }
+
+  function tick(){
+    const step = 100; // ms
+    leftMs -= step;
+    if(leftMs <= 0){
+      leftMs = 0; draw(); stopTimer(false); onFinish();
+    } else {
+      draw();
+    }
+  }
+
+  function startTimer(){
+    const m = Math.max(0, parseInt(minEl.value || '0', 10));
+    const s = Math.max(0, Math.min(59, parseInt(secEl.value || '0', 10)));
+    if(!started){
+      totalMs = (m*60 + s) * 1000;
+      if(totalMs <= 0){ statusEl.textContent = 'Set a time first'; return; }
+      leftMs = totalMs; started = true;
+    }
+    if(running) return;
+    running = true;
+    statusEl.textContent = 'Running' + (lblEl.value ? (' — ' + lblEl.value) : '');
+    tId = setInterval(tick, 100);
+    startBtn.disabled = true;
+    pauseBtn.disabled = false;
+    resetBtn.disabled = false;
+    // init audio context on user gesture
+    if(!ctx){
+      try{ ctx = new (window.AudioContext || window.webkitAudioContext)(); }catch(e){}
+    }
+  }
+
+  function pauseTimer(){
+    if(!running) return;
+    running = false;
+    clearInterval(tId);
+    startBtn.disabled = false;
+    pauseBtn.disabled = true;
+    statusEl.textContent = 'Paused';
+  }
+
+  function stopTimer(resetAll){
+    clearInterval(tId); running = false;
+    startBtn.disabled = false; pauseBtn.disabled = true;
+    if(resetAll){
+      started = false; totalMs = 0; leftMs = 0; draw();
+      resetBtn.disabled = true; statusEl.textContent = 'Ready';
+    } else {
+      resetBtn.disabled = false; statusEl.textContent = 'Finished';
+    }
+  }
+
+  function resetTimer(){
+    clearInterval(tId); running = false;
+    leftMs = totalMs; draw();
+    startBtn.disabled = false; pauseBtn.disabled = true;
+    statusEl.textContent = 'Ready';
+  }
+
+  startBtn.onclick = startTimer;
+  pauseBtn.onclick = pauseTimer;
+  resetBtn.onclick = resetTimer;
+
+  function beep(times=3){
+    if(!ctx) return;
+    const gap = 250;
+    for(let i=0;i<times;i++){
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = 'sine';
+      o.frequency.value = (i%2===0)?880:660;
+      o.connect(g); g.connect(ctx.destination);
+      const now = ctx.currentTime + i*(gap/1000);
+      g.gain.setValueAtTime(0, now);
+      g.gain.linearRampToValueAtTime(0.2, now + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+      o.start(now);
+      o.stop(now + 0.2);
+    }
+  }
+
+  function onFinish(){
+    // sound
+    try{ beep(4); }catch(e){}
+    // vibration
+    if(navigator.vibrate){ navigator.vibrate([200,100,200]); }
+    // attention
+    const msg = (lblEl.value ? lblEl.value + ' — ' : '') + 'Time is up!';
+    alert('⏱ ' + msg);
+    // flash title briefly
+    const orig = document.title;
+    let n=0; const flasher = setInterval(()=>{
+      document.title = (n++%2===0)?'⏰ TIME UP!':orig;
+      if(n>6){ clearInterval(flasher); document.title = orig; }
+    }, 500);
+  }
+
+  // init
+  draw();
+</script>
 </body>
 </html>
