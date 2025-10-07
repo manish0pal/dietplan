@@ -1,310 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Manish — Posture Correction (Pelvic Tilt + Duck Feet)</title>
-<style>
-  :root{
-    --bg:#0f1115; --card:#181b22; --text:#e7e9ee; --muted:#a2a9b6; --accent:#6ee7d9; --accent2:#8ab4ff; --ok:#2ecc71; --line:#262b36;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:var(--bg);color:var(--text)}
-  header{padding:16px 14px;text-align:center;background:linear-gradient(180deg,#141824,#10131a);border-bottom:1px solid var(--line)}
-  header h1{margin:0;font-size:1.1rem;color:var(--accent)}
-  header p{margin:6px 0 0;color:var(--muted);font-size:.9rem}
-  .wrap{max-width:900px;margin:0 auto;padding:14px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0;box-shadow:0 8px 24px rgba(0,0,0,.25)}
-  .card h2{margin:2px 0 10px;font-size:1rem;color:var(--accent2)}
-  .grid{display:grid;grid-template-columns:1fr;gap:12px}
-  .ex{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px}
-  .ex img{width:120px;max-width:40vw;height:auto;border-radius:10px;background:#0b0e13}
-  .ex .txt{flex:1}
-  .ex .title{font-weight:600}
-  .meta{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0;color:var(--muted);font-size:.85rem}
-  .chip{border:1px solid var(--line);padding:2px 8px;border-radius:999px}
-  .check{margin-left:auto}
-  .check button{border:1px solid var(--line);background:#202532;color:var(--text);padding:6px 10px;border-radius:10px;cursor:pointer}
-  .check button.done{background:var(--ok);border-color:transparent}
-  .progress{display:flex;justify-content:space-between;align-items:center;padding:10px;border:1px dashed var(--line);border-radius:12px;margin-top:6px}
-  .progress span{color:var(--muted);font-size:.9rem}
-  .tip{font-size:.9rem;color:var(--muted)}
-  .credits{font-size:.8rem;color:var(--muted)}
-  .two{display:grid;grid-template-columns:1fr;gap:12px}
-  @media (min-width:720px){
-    .grid{grid-template-columns:1fr 1fr}
-    .two{grid-template-columns:1fr 1fr}
-  }
-  
-  #floatingBtn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 14px 18px;
-  background: var(--accent);
-  color: #000;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  z-index: 10000;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-#floatingBtn:hover {
-  background: var(--accent2);
-}
-
-</style>
-</head>
-<body>
-<header>
-  <h1>🧭 Posture Correction Plan</h1>
-  <p>Fix anterior pelvic tilt + duck feet (right foot turnout) with daily stretches & strength</p>
-</header>
-
-<div class="wrap">
-
-  <!-- Quick routine -->
-  <div class="card">
-    <h2>⏱️ Daily Quick Routine (15–20 min)</h2>
-    <div class="two">
-      <div class="tip">
-        <strong>Morning (after calisthenics warm-up)</strong><br>
-        1) Hip-flexor stretch — 30s/side ×2<br>
-        2) Hamstring stretch — 30s/side ×2<br>
-        3) Glute bridges — 3×12 (pause 2s at top)<br>
-        4) Clamshells — 3×12/side (slow control)<br>
-        5) Plank — 3×30–45s
-      </div>
-      <div class="tip">
-        <strong>Evening (cool-down / mobility)</strong><br>
-        1) Piriformis “Figure-4” — 30–45s/side ×2<br>
-        2) Child’s Pose — 60–90s<br>
-        3) Hip-flexor stretch — 30s/side<br>
-        4) 5 mindful steps, toes forward, squeeze glutes lightly on push-off
-      </div>
-    </div>
-    <div class="progress"><strong>Today’s completion:</strong> <span id="count">0</span>/<span id="total">0</span> ✓</div>
-  </div>
-
-  <!-- Stretches -->
-  <div class="card">
-    <h2>🧘 Stretches (release tight muscles)</h2>
-    <div class="grid" id="stretch-list">
-
-      <div class="ex">
-        <img src="https://backintelligence.com/wp-content/uploads/2018/01/kneeling-hip-flexor-stretch.webp" alt="Hip flexor lunge stretch">
-        <div class="txt">
-          <div class="title">Hip-Flexor (Lunge) Stretch</div>
-          <div class="meta"><span class="chip">30s/side ×2</span><span class="chip">Hips tucked (posterior tilt)</span></div>
-          <div class="tip">Half-kneel, tuck tailbone (light posterior tilt), push hips forward without arching lower back; squeeze back-side glute.</div>
-        </div>
-        <div class="check"><button>Done</button></div>
-      </div>
-
-      <div class="ex">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Piriformis%20stretch.jpg" alt="Piriformis figure-4 stretch">
-        <div class="txt">
-          <div class="title">Piriformis (Figure-4) Stretch</div>
-          <div class="meta"><span class="chip">30–45s/side ×2</span><span class="chip">Butt/outer hip</span></div>
-          <div class="tip">Lie on back, cross ankle over opposite knee (4-shape), pull uncrossed leg toward chest; keep low back relaxed.</div>
-        </div>
-        <div class="check"><button>Done</button></div>
-      </div>
-
-      <div class="ex">
-        <img src="https://cdn.shopify.com/s/files/1/0742/5556/5121/files/Hamstring-Stretch-Sitting-WEB.jpg" alt="Hamstring stretch with strap/chair">
-        <div class="txt">
-          <div class="title">Hamstring Stretch</div>
-          <div class="meta"><span class="chip">30s/side ×2</span><span class="chip">Neutral spine</span></div>
-          <div class="tip">Keep back long (avoid rounding). Hinge at hips; you should feel back of thigh, not the lower back.</div>
-        </div>
-        <div class="check"><button>Done</button></div>
-      </div>
-
-      <div class="ex">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Balasana.JPG" alt="Child's Pose (Balasana)">
-        <div class="txt">
-          <div class="title">Child’s Pose</div>
-          <div class="meta"><span class="chip">60–90s</span><span class="chip">Relax lower back</span></div>
-          <div class="tip">Kneel, hips to heels, arms forward, breathe into ribs and low back to gently de-arch the spine.</div>
-        </div>
-        <div class="check"><button>Done</button></div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Strength -->
-  <div class="card">
-    <h2>🏋️ Strength (fix weak links)</h2>
-    <div class="grid" id="strength-list">
-
-      <div class="ex">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Glute-bridge.png" alt="Glute bridge">
-        <div class="txt">
-          <div class="title">Glute Bridge</div>
-          <div class="meta"><span class="chip">3×12</span><span class="chip">2s pause at top</span></div>
-          <div class="tip">Feet hip-width, exhale, flatten ribs, drive through heels, squeeze glutes; stop before low-back arches.</div>
-        </div>
-        <div class="check"><button>Done</button></div>
-      </div>
-
-      <div class="ex">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Single%20Leg%20Glute%20Bridge.png" alt="Single-leg glute bridge">
-        <div class="txt">
-          <div class="title">Single-Leg Bridge (progression)</div>
-          <div class="meta"><span class="chip">3×8/side</span><span class="chip">Level hips</span></div>
-          <div class="tip">Keep pelvis level; don’t let one hip drop. Use only if double-leg is easy with control.</div>
-        </div>
-        <div class="check"><button>Done</button></div>
-      </div>
-
-      <div class="ex">
-        <img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/blogs/31494/images/J5M3pMmRoGW9a9WBeiga_Exercises-to-strengthen-glute-med.jpg" alt="Clamshell for glute medius">
-        <div class="txt">
-          <div class="title">Clamshell (Glute Medius)</div>
-          <div class="meta"><span class="chip">3×12/side</span><span class="chip">No trunk roll</span></div>
-          <div class="tip">Side-lying, knees bent 90°. Keep heels together, lift top knee without rolling pelvis back.</div>
-        </div>
-        <div class="check"><button>Done</button></div>
-      </div>
-
-      <div class="ex">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Plank%20exercise.svg" alt="Front plank">
-        <div class="txt">
-          <div class="title">Plank (Core/Anti-arch)</div>
-          <div class="meta"><span class="chip">3×30–45s</span><span class="chip">Ribs down</span></div>
-          <div class="tip">Elbows under shoulders, squeeze glutes, lightly tuck pelvis (posterior tilt) to reduce lower-back arch.</div>
-        </div>
-        <div class="check"><button>Done</button></div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Gait & standing cues -->
-  <div class="card">
-    <h2>🚶 Form Cues (Standing & Walking)</h2>
-    <ul class="tip">
-      <li>Feet straight ahead (use floor line as guide). If right foot wants to point out, consciously align it forward.</li>
-      <li>Lightly tuck pelvis (imagine zipping up tight jeans) and keep ribs stacked over pelvis.</li>
-      <li>On push-off while walking: squeeze both glutes evenly; don’t over-arch lower back.</li>
-    </ul>
-  </div>
-
-<button onclick="openStopwatch()" id="floatingBtn">⏱️</button>
-
-</div>
-<div id="stopwatchModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000b3; z-index:9999; justify-content:center; align-items:center;">
-  <div style="background:var(--card); color:var(--text); padding:20px; border-radius:12px; width:90%; max-width:400px; box-shadow:0 0 20px rgba(0,0,0,0.4); text-align:center; position:relative;">
-    <button onclick="closeStopwatch()" style="position:absolute; top:10px; right:10px; background:transparent; border:none; color:var(--muted); font-size:20px; cursor:pointer;">×</button>
-    
-    <h3>⏱️ Custom Timer</h3>
-    <p class="tip">Enter time in seconds and start the stopwatch</p>
-    <input type="number" id="customTime" placeholder="Enter seconds" style="padding:8px; width:80%; border-radius:8px; border:1px solid var(--line); background:var(--bg); color:var(--text); margin-bottom:10px;" />
-
-    <div style="font-size:2rem; margin:12px 0;" id="stopwatchDisplay">00:00</div>
-
-    <div style="display:flex; justify-content:center; gap:10px;">
-      <button onclick="startStopwatch()" style="padding:8px 16px; border-radius:8px; background:var(--accent2); border:none; color:#fff; cursor:pointer;">Start</button>
-      <button onclick="resetStopwatch()" style="padding:8px 16px; border-radius:8px; background:var(--line); border:none; color:var(--text); cursor:pointer;">Reset</button>
-    </div>
-  </div>
-</div>
-<!-- Sound for time up -->
-<audio id="beepSound">
-  <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
-  <source src="https://actions.google.com/sounds/v1/alarms/beep_short.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-<script>
-  let stopwatchInterval;
-  let timeLeft = 0;
-
-  const beepSound = document.getElementById('beepSound');
-
-  function openStopwatch() {
-    document.getElementById('stopwatchModal').style.display = 'flex';
-    document.getElementById('customTime').value = '';
-    resetStopwatch();
-  }
-
-  function closeStopwatch() {
-    document.getElementById('stopwatchModal').style.display = 'none';
-    clearInterval(stopwatchInterval);
-  }
-
-  function startStopwatch() {
-    const input = document.getElementById('customTime').value;
-    const seconds = parseInt(input);
-    if (isNaN(seconds) || seconds <= 0) {
-      alert('Please enter a valid number of seconds.');
-      return;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manish — Evening Posture + Mobility Routine</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #181b22;
+      --text: #e7e9ee;
+      --muted: #a2a9b6;
+      --accent: #00c4b4;
+      --accent2: #6ee7d9;
+      --ok: #2ecc71;
+      --line: #262b36;
     }
 
-    timeLeft = seconds;
-    updateDisplay();
+    * {
+      box-sizing: border-box;
+    }
 
-    clearInterval(stopwatchInterval);
-    stopwatchInterval = setInterval(() => {
-      timeLeft--;
-      updateDisplay();
-      if (timeLeft <= 0) {
-        clearInterval(stopwatchInterval);
-        beepSound.play();
-        alert("⏰ Time's up!");
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, Ubuntu, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      padding: 16px 14px;
+      text-align: center;
+      background: linear-gradient(180deg, #141824, #10131a);
+      border-bottom: 1px solid var(--line);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    header p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      margin: 12px 0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+    }
+
+    .card h2 {
+      margin: 2px 0 10px;
+      font-size: 1rem;
+      color: var(--accent2);
+    }
+
+    .ex {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .ex img {
+      width: 120px;
+      max-width: 35vw;
+      height: auto;
+      border-radius: 10px;
+      background: #0b0e13;
+    }
+
+    .ex .txt {
+      flex: 1;
+    }
+
+    .ex .title {
+      font-weight: 600;
+    }
+
+    .meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 6px 0;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .check button {
+      border: 1px solid var(--line);
+      background: #202532;
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .check button.done {
+      background: var(--ok);
+      border-color: transparent;
+    }
+
+    .progress {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      margin-top: 6px;
+    }
+
+    .progress span {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .tip {
+      font-size: .9rem;
+      color: var(--muted);
+    }
+
+    @media (max-width:600px) {
+      .ex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
       }
-    }, 1000);
-  }
 
-  function resetStopwatch() {
-    clearInterval(stopwatchInterval);
-    document.getElementById('stopwatchDisplay').textContent = "00:00";
-  }
+      .ex img {
+        width: 90%;
+        max-width: 300px;
+      }
 
-  function updateDisplay() {
-    const min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-    const sec = String(timeLeft % 60).padStart(2, '0');
-    document.getElementById('stopwatchDisplay').textContent = `${min}:${sec}`;
-  }
-</script>
+      .meta {
+        justify-content: center;
+      }
+    }
 
-<script>
-  // Persist "Done" state and compute progress
-  const buttons = document.querySelectorAll('.check button');
-  const total = buttons.length;
-  const totalEl = document.getElementById('total');
-  const countEl = document.getElementById('count');
-  totalEl.textContent = total;
+    #floatingBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 14px 18px;
+      background: var(--accent);
+      color: #000;
+      font-size: 1.3rem;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      z-index: 10000;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
 
-  const todayKey = 'pc_day_' + new Date().toDateString();
-  // Reset daily
-  if(localStorage.getItem('pc_last') !== todayKey){
-    Object.keys(localStorage).forEach(k => { if(k.startsWith('pc_done_')) localStorage.removeItem(k); });
-    localStorage.setItem('pc_last', todayKey);
-  }
+    #floatingBtn:hover {
+      background: var(--accent2);
+    }
+  </style>
+</head>
 
-  function updateCount(){
-    const done = [...buttons].filter(b => b.classList.contains('done')).length;
-    countEl.textContent = done;
-  }
+<body>
+  <header>
+    <h1>🌙 Evening Posture + Mobility Routine</h1>
+    <p>One session to fix pelvic tilt, duck feet & back tightness</p>
+  </header>
 
-  buttons.forEach((btn, i) => {
-    const key = 'pc_done_' + i;
-    const saved = localStorage.getItem(key) === '1';
-    if(saved){ btn.classList.add('done'); btn.textContent = '✓'; }
-    btn.addEventListener('click', () => {
-      btn.classList.toggle('done');
-      const isDone = btn.classList.contains('done');
-      btn.textContent = isDone ? '✓' : 'Done';
-      localStorage.setItem(key, isDone ? '1' : '0');
+  <div class="wrap">
+    <div class="card">
+      <h2>🕖 Timing Plan</h2>
+      <ul class="tip">
+        <li><b>Start:</b> around <b>6:45 PM – 7:15 PM</b> (before light workout)</li>
+        <li><b>Duration:</b> ~20–25 minutes</li>
+        <li><b>Goal:</b> Mobility + Strength + Mind–Body balance</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>💪 Core Workout</h2>
+
+      <div class="ex">
+        <img src="./img/kegal1.jpeg" alt="Straight leg pelvic press">
+        <div class="txt">
+          <div class="title">1️⃣ Straight leg pelvic press</div>
+          <div class="meta"><span class="chip">20 reps × 4</span></div>
+          <div class="tip">Lift pelvis using core, not momentum — move slow and controlled.</div>
+        </div>
+        <div class="check"><button>Done</button></div>
+      </div>
+
+      <div class="ex">
+        <img src="./img/kegal2.jpeg" alt="Frog Press">
+        <div class="txt">
+          <div class="title">2️⃣ Frog Presss</div>
+          <div class="meta"><span class="chip">20 reps × 4</span></div>
+          <div class="tip">Keep feet together, knees out, and squeeze inner thighs as you lift.</div>
+        </div>
+        <div class="check"><button>Done</button></div>
+      </div>
+
+      <div class="ex">
+        <img src="./img/kegal3.jpeg" alt="Hip Thrust">
+        <div class="txt">
+          <div class="title">3️⃣ Hip Thrust</div>
+          <div class="meta"><span class="chip">20 reps × 4</span></div>
+          <div class="tip">Push through heels, squeeze glutes hard at top, keep chin tucked</div>
+        </div>
+        <div class="check"><button>Done</button></div>
+      </div>
+
+      <div class="ex">
+        <img src="./img/kegal4.jpeg" alt="Plank Pelvic Press">
+        <div class="txt">
+          <div class="title">4️⃣ Plank Pelvic Press</div>
+          <div class="meta"><span class="chip">20 reps × 4</span></div>
+          <div class="tip">In plank, gently tilt pelvis forward and squeeze core–glutes together.</div>
+        </div>
+        <div class="check"><button>Done</button></div>
+      </div>
+
+
+
+      <div class="card">
+        <h2>💪 Combined Routine (20–25 min)</h2>
+
+        <div class="ex">
+          <img src="https://backintelligence.com/wp-content/uploads/2018/01/kneeling-hip-flexor-stretch.webp"
+            alt="Hip flexor stretch">
+          <div class="txt">
+            <div class="title">1️⃣ Hip-Flexor Stretch</div>
+            <div class="meta"><span class="chip">30 s / side × 1</span></div>
+            <div class="tip">Half-kneel, tuck tailbone slightly, push hips forward gently while keeping chest upright.
+            </div>
+          </div>
+          <div class="check"><button>Done</button></div>
+        </div>
+
+        <div class="ex">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Glute-bridge.png" alt="Glute bridge">
+          <div class="txt">
+            <div class="title">2️⃣ Glute Bridges</div>
+            <div class="meta"><span class="chip">3×12</span><span class="chip">Pause 2 s at top</span></div>
+            <div class="tip">Drive through heels, squeeze glutes hard; avoid arching lower back.</div>
+          </div>
+          <div class="check"><button>Done</button></div>
+        </div>
+        <div class="ex">
+          <img src="https://runmechanics.in/assets/img/workouts/sinlge-leg-glute-bridges.jpg"
+            alt="Single-leg glute bridge">
+          <div class="txt">
+            <div class="title">2.1 Single-Leg Bridge (progression)</div>
+            <div class="meta"><span class="chip">3×8/side</span><span class="chip">Level hips</span></div>
+            <div class="tip">Keep pelvis level; don’t let one hip drop. Use only if double-leg is easy with control.
+            </div>
+          </div>
+          <div class="check"><button>Done</button></div>
+        </div>
+
+        <div class="ex">
+          <img
+            src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/blogs/31494/images/J5M3pMmRoGW9a9WBeiga_Exercises-to-strengthen-glute-med.jpg"
+            alt="Clamshell">
+          <div class="txt">
+            <div class="title">3️⃣ Clamshells</div>
+            <div class="meta"><span class="chip">3×12/side</span></div>
+            <div class="tip">Lie on side, knees bent 90°, open top knee without rolling pelvis back.</div>
+          </div>
+          <div class="check"><button>Done</button></div>
+        </div>
+
+        <div class="ex">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Plank%20exercise.svg" alt="Plank">
+          <div class="txt">
+            <div class="title">4️⃣ Plank</div>
+            <div class="meta"><span class="chip">3×30–45 s</span></div>
+            <div class="tip">Elbows under shoulders, squeeze glutes, keep pelvis tucked.</div>
+          </div>
+          <div class="check"><button>Done</button></div>
+        </div>
+
+        <div class="ex">
+          <img src="https://cdn.shopify.com/s/files/1/0742/5556/5121/files/Hamstring-Stretch-Sitting-WEB.jpg"
+            alt="Hamstring stretch">
+          <div class="txt">
+            <div class="title">5️⃣ Hamstring Stretch</div>
+            <div class="meta"><span class="chip">30 s / side × 2</span></div>
+            <div class="tip">Hinge at hips; back straight. Feel stretch in back of thigh.</div>
+          </div>
+          <div class="check"><button>Done</button></div>
+        </div>
+
+        <div class="ex">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Piriformis%20stretch.jpg"
+            alt="Piriformis stretch">
+          <div class="txt">
+            <div class="title">6️⃣ Piriformis (Figure-4) Stretch</div>
+            <div class="meta"><span class="chip">30–45 s / side × 2</span></div>
+            <div class="tip">Lie on back, cross ankle over knee, pull leg gently toward chest.</div>
+          </div>
+          <div class="check"><button>Done</button></div>
+        </div>
+
+        <div class="ex">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Balasana.JPG" alt="Child's pose">
+          <div class="txt">
+            <div class="title">7️⃣ Child’s Pose</div>
+            <div class="meta"><span class="chip">60–90 s</span></div>
+            <div class="tip">Arms forward, hips to heels, breathe deep into ribs & lower back.</div>
+          </div>
+          <div class="check"><button>Done</button></div>
+        </div>
+
+
+        <div class="ex">
+          <img src="./img/youtube.png" alt="Hip Opner Stretches">
+          <div class="txt">
+            <div class="title"> 5 Simple Stretches</div>
+            <div class="meta"><span class="chip"></span></div>
+            <div class="tip"><a href="https://youtu.be/9rCSFB8WjwQ?si=uJkAgE07zowpDvIb" target="_blank">Click to
+                Watch</a> <br> Watch and Complete</div>
+          </div>
+          <div class="check"><button>Done</button></div>
+        </div>
+
+        <div class="ex">
+          <img src="./img/kegal.png" alt="Kegal Man">
+          <div class="txt">
+            <div class="title"> Kegal Man</div>
+            <div class="meta"><span class="chip"></span></div>
+            <div class="tip">Complete this as it is Paid</div>
+          </div>
+          <div class="check"><button>Done</button></div>
+        </div>
+
+        <div class="progress"><strong>Completion:</strong> <span id="count">0</span>/<span id="total">0</span> ✓</div>
+      </div>
+    </div>
+
+    <button onclick="openStopwatch()" id="floatingBtn">⏱️</button>
+
+    <!-- Stopwatch modal -->
+    <div id="stopwatchModal"
+      style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000a;z-index:9999;justify-content:center;align-items:center;">
+      <div
+        style="background:var(--card);color:var(--text);padding:20px;border-radius:12px;width:90%;max-width:400px;box-shadow:0 0 20px rgba(0,0,0,0.4);text-align:center;position:relative;">
+        <button onclick="closeStopwatch()"
+          style="position:absolute;top:10px;right:10px;background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer;">×</button>
+        <h3>⏱️ Custom Timer</h3>
+        <p class="tip">Enter time in seconds and start</p>
+        <input type="number" id="customTime" placeholder="Seconds"
+          style="padding:8px;width:80%;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--text);margin-bottom:10px;">
+        <div style="font-size:2rem;margin:12px 0;" id="stopwatchDisplay">00:00</div>
+        <div style="display:flex;justify-content:center;gap:10px;">
+          <button onclick="startStopwatch()"
+            style="padding:8px 16px;border-radius:8px;background:var(--accent2);border:none;color:#000;cursor:pointer;">Start</button>
+          <button onclick="resetStopwatch()"
+            style="padding:8px 16px;border-radius:8px;background:var(--line);border:none;color:var(--text);cursor:pointer;">Reset</button>
+        </div>
+      </div>
+    </div>
+    <audio id="beepSound">
+      <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
+    </audio>
+
+    <script>
+      // Stopwatch
+      let stopwatchInterval; let timeLeft = 0; const beepSound = document.getElementById('beepSound');
+      function openStopwatch() { document.getElementById('stopwatchModal').style.display = 'flex'; resetStopwatch(); }
+      function closeStopwatch() { document.getElementById('stopwatchModal').style.display = 'none'; clearInterval(stopwatchInterval); }
+      function startStopwatch() {
+        const sec = parseInt(document.getElementById('customTime').value);
+        if (isNaN(sec) || sec <= 0) { alert('Enter valid seconds'); return; }
+        timeLeft = sec; updateDisplay(); clearInterval(stopwatchInterval);
+        stopwatchInterval = setInterval(() => {
+          timeLeft--; updateDisplay();
+          if (timeLeft <= 0) { clearInterval(stopwatchInterval); beepSound.play(); alert("⏰ Time's up!"); }
+        }, 1000);
+      }
+      function resetStopwatch() { clearInterval(stopwatchInterval); document.getElementById('stopwatchDisplay').textContent = "00:00"; }
+      function updateDisplay() { const m = String(Math.floor(timeLeft / 60)).padStart(2, '0'); const s = String(timeLeft % 60).padStart(2, '0'); document.getElementById('stopwatchDisplay').textContent = `${m}:${s}`; }
+
+      // Progress Tracker
+      const buttons = document.querySelectorAll('.check button');
+      const total = buttons.length; document.getElementById('total').textContent = total;
+      const todayKey = 'pelvic_' + new Date().toDateString();
+      if (localStorage.getItem('pelvic_day') !== todayKey) {
+        Object.keys(localStorage).forEach(k => { if (k.startsWith('pelvic_done_')) localStorage.removeItem(k); });
+        localStorage.setItem('pelvic_day', todayKey);
+      }
+      function updateCount() {
+        const done = [...buttons].filter(b => b.classList.contains('done')).length;
+        document.getElementById('count').textContent = done;
+      }
+      buttons.forEach((btn, i) => {
+        const key = 'pelvic_done_' + i;
+        if (localStorage.getItem(key) === '1') { btn.classList.add('done'); btn.textContent = '✓'; }
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('done');
+          const done = btn.classList.contains('done');
+          btn.textContent = done ? '✓' : 'Done';
+          localStorage.setItem(key, done ? '1' : '0'); updateCount();
+        });
+      });
       updateCount();
-    });
-  });
-  updateCount();
-</script>
+    </script>
 </body>
+
 </html>
