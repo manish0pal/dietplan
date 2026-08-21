@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RITES Manager API Developer - 10 Day Study Plan</title>
+<style>
+  :root { --bg:#f5f7fb; --card:#fff; --text:#172033; --muted:#667085; --border:#e4e7ec; --accent:#2563eb; --good:#16a34a; --warn:#d97706; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+  .wrap{max-width:1050px;margin:auto;padding:24px}
+  header{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:18px}
+  h1{margin:0 0 8px;font-size:28px}.sub{color:var(--muted)}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+  .stat{padding:14px;border:1px solid var(--border);border-radius:12px;background:#fafbff}
+  .stat b{display:block;font-size:20px}.stat span{font-size:13px;color:var(--muted)}
+  .note{background:#eff6ff;border-left:4px solid var(--accent);padding:14px 16px;border-radius:8px;margin:18px 0}
+  .day{background:var(--card);border:1px solid var(--border);border-radius:16px;margin:16px 0;overflow:hidden}
+  .dayhead{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:12px;align-items:center}
+  .dayhead h2{margin:0;font-size:20px}.hours{color:var(--muted);font-size:13px;white-space:nowrap}
+  .body{padding:18px 20px}.topic{margin:0 0 15px}
+  .topic h3{font-size:16px;margin:0 0 8px}
+  ul{margin:7px 0 14px;padding-left:24px} li{margin:5px 0}
+  label{display:block;margin:7px 0;cursor:pointer}
+  input[type=checkbox]{width:17px;height:17px;vertical-align:-3px;margin-right:8px;accent-color:var(--accent)}
+  .target{font-weight:bold;color:var(--accent)}
+  .priority{font-size:11px;border-radius:999px;padding:3px 8px;margin-left:6px;background:#eef2ff}
+  .mock{background:#fff7ed;border-left:4px solid var(--warn);padding:12px;border-radius:8px}
+  footer{color:var(--muted);font-size:13px;padding:15px 2px 30px}
+  @media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}.dayhead{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>RITES Manager (API Developer) — 10-Day Checklist</h1>
+  <div class="sub">VC No. RG/15/26 • Exam: 30 August 2026 • Target: 95%+ (119/125)</div>
+  <div class="stats">
+    <div class="stat"><b>4–5 hrs</b><span>Study time / day</span></div>
+    <div class="stat"><b>125</b><span>Questions</span></div>
+    <div class="stat"><b>150 min</b><span>Exam duration</span></div>
+    <div class="stat"><b>0</b><span>Negative marking</span></div>
+  </div>
+</header>
+
+<div class="note">
+  <b>Important:</b> This plan is built from the official RITES Manager (API Developer) syllabus in the uploaded advertisement.
+  A 95% target means <b>119/125</b>. That is an ambitious target; use the mock-test scores to adjust weak areas.
+  SAP is not part of the official API Developer syllabus, so it is intentionally excluded.
+</div>
+
+<section class="day">
+<div class="dayhead"><h2>Day 1 — Core Java: Fundamentals + OOP</h2><span class="hours">4–5 hours</span></div>
+<div class="body">
+<div class="topic"><h3>Study — 2.5 hrs <span class="priority">HIGH</span></h3>
+<label><input type="checkbox">Data types, variables, operators, control statements</label>
+<label><input type="checkbox">Classes, objects, constructors</label>
+<label><input type="checkbox">Encapsulation, inheritance, polymorphism, abstraction</label>
+<label><input type="checkbox">Interface vs abstract class</label>
+<label><input type="checkbox">Overloading vs overriding</label>
+<label><input type="checkbox">static, final, this, super</label>
+<label><input type="checkbox">String, StringBuilder, StringBuffer</label>
+</div>
+<div class="topic"><h3>Practice — 1.5 hrs</h3>
+<label><input type="checkbox">Solve 60–80 Java MCQs</label>
+<label><input type="checkbox">Review every wrong answer</label>
+<label><input type="checkbox">Create a one-page Java/OOP revision sheet</label>
+</div>
+<div class="target">Daily target: 80%+ in Java MCQs</div>
+</div></section>
+
+<section class="day">
+<div class="dayhead"><h2>Day 2 — Java Collections + Exceptions + Streams + Concurrency</h2><span class="hours">4–5 hours</span></div>
+<div class="body">
+<div class="topic"><h3>Study — 2.5 hrs</h3>
+<label><input type="checkbox">List, Set, Map, Queue</label>
+<label><input type="checkbox">ArrayList vs LinkedList</label>
+<label><input type="checkbox">HashSet, TreeSet, LinkedHashSet</label>
+<label><input type="checkbox">HashMap, TreeMap, LinkedHashMap, ConcurrentHashMap</label>
+<label><input type="checkbox">Comparable vs Comparator</label>
+<label><input type="checkbox">Checked vs unchecked exceptions</label>
+<label><input type="checkbox">try-with-resources, custom exceptions</label>
+<label><input type="checkbox">Lambda expressions, functional interfaces, Streams, Optional</label>
+<label><input type="checkbox">Thread lifecycle, synchronization, Executor, Callable/Future</label>
+<label><input type="checkbox">Concurrent collections</label>
+</div>
+<div class="topic"><h3>Practice — 1.5–2 hrs</h3>
+<label><input type="checkbox">80–100 MCQs</label>
+<label><input type="checkbox">Revise Collections traps and concurrency concepts</label>
+</div>
+<div class="target">Daily target: 85%+ in Java MCQs</div>
+</div></section>
+
+<section class="day">
+<div class="dayhead"><h2>Day 3 — JVM + Design Patterns + Spring Core</h2><span class="hours">4–5 hours</span></div>
+<div class="body">
+<div class="topic"><h3>Study — 2.5 hrs <span class="priority">HIGH</span></h3>
+<label><input type="checkbox">JVM architecture, heap vs stack</label>
+<label><input type="checkbox">Class loader, garbage collection, memory management</label>
+<label><input type="checkbox">Singleton, Factory, Builder, Strategy, Observer</label>
+<label><input type="checkbox">Reflection API, File I/O/NIO</label>
+<label><input type="checkbox">Spring architecture</label>
+<label><input type="checkbox">IoC and Dependency Injection</label>
+<label><input type="checkbox">Bean lifecycle</label>
+<label><input type="checkbox">@Component, @Service, @Repository, @Controller, @Bean</label>
+</div>
+<div class="topic"><h3>Practice — 1.5–2 hrs</h3>
+<label><input type="checkbox">60 Java/JVM MCQs</label>
+<label><input type="checkbox">40 Spring Core MCQs</label>
+<label><input type="checkbox">Write a short comparison: Node dependency injection vs Spring DI</label>
+</div>
+<div class="target">Daily target: 85%+ combined</div>
+</div></section>
+
+<section class="day">
+<div class="dayhead"><h2>Day 4 — Spring Boot + REST API</h2><span class="hours">4–5 hours</span></div>
+<div class="body">
+<div class="topic"><h3>Study — 2.5 hrs <span class="priority">VERY HIGH</span></h3>
+<label><input type="checkbox">Spring Boot auto-configuration and starters</label>
+<label><input type="checkbox">Spring MVC and REST controllers</label>
+<label><input type="checkbox">Request mapping, path variables, request params, request body</label>
+<label><input type="checkbox">Spring Data JPA and Hibernate ORM</label>
+<label><input type="checkbox">Transactions and transaction management</label>
+<label><input type="checkbox">Validation and global exception handling</label>
+<label><input type="checkbox">SLF4J/Logback logging</label>
+<label><input type="checkbox">Profiles and environment configuration</label>
+<label><input type="checkbox">Caching and scheduling</label>
+<label><input type="checkbox">JUnit and Mockito basics</label>
+<label><input type="checkbox">REST principles, HTTP methods/status codes, JSON/XML</label>
+<label><input type="checkbox">OpenAPI/Swagger, API documentation, versioning</label>
+</div>
+<div class="topic"><h3>Practice — 1.5–2 hrs</h3>
+<label><input type="checkbox">100 Spring/REST MCQs</label>
+<label><input type="checkbox">Revise HTTP status codes and REST design</label>
+</div>
+<div class="target">Daily target: 90%+ in Spring/REST MCQs</div>
+</div></section>
+
+<section class="day">
+<div class="dayhead"><h2>Day 5 — API Design + Enterprise Integration + Microservices</h2><span class="hours">4–5 hours</span></div>
+<div class="body">
+<div class="topic"><h3>Study — 2.5 hrs <span class="priority">VERY HIGH</span></h3>
+<label><input type="checkbox">CRUD, request/response design, pagination, sorting, filtering</label>
+<label><input type="checkbox">Error handling and idempotency</label>
+<label><input type="checkbox">HATEOAS and content negotiation</label>
+<label><input type="checkbox">API lifecycle and governance</label>
+<label><input type="checkbox">EAI, SOA, integration patterns</label>
+<label><input type="checkbox">REST vs SOAP</label>
+<label><input type="checkbox">XML/JSON transformation and data mapping</label>
+<label><input type="checkbox">ESB and API Gateway concepts</label>
+<label><input type="checkbox">Event-driven integration and message reliability</label>
+<label><input type="checkbox">Service discovery, config server, service registry</label>
+<label><input type="checkbox">Circuit breaker, load balancing, fault tolerance</label>
+<label><input type="checkbox">Distributed transactions, Saga, CQRS</label>
+</div>
+<div class="topic"><h3>Practice — 1.5–2 hrs</h3>
+<label><input type="checkbox">100–120 API/Microservices MCQs</label>
+<label><input type="checkbox">Draw one complete microservices architecture from memory</label>
+</div>
+<div class="target">Daily target: 90%+</div>
+</div></section>
+
+<section class="day">
+<div class="dayhead"><h2>Day 6 — PostgreSQL + SQL + Messaging</h2><span class="hours">4–5 hours</span></div>
+<div class="body">
+<div class="topic"><h3>Study — 2.5 hrs</h3>
+<label><input type="checkbox">Joins, subqueries, views</label>
+<label><input type="checkbox">Stored procedures, functions, triggers</label>
+<label><input type="checkbox">Indexes and query optimization</label>
+<label><input type="checkbox">Normalization and denormalization</label>
+<label><input type="checkbox">ACID properties</label>
+<label><input type="checkbox">Transactions, locking, concurrency control</label>
+<label><input type="checkbox">Connection pooling and ORM concepts</label>
+<label><input type="checkbox">Kafka: topic, partition, offset, consumer group, replication</label>
+<label><input type="checkbox">RabbitMQ: exchange, queue, ACK/NACK, routing</label>
+<label><input type="checkbox">ActiveMQ/JMS basics, Pub/Sub, persistence, DLQ, retries</label>
+</div>
+<div class="topic"><h3>Practice — 1.5–2 hrs</h3>
+<label><input type="checkbox">60 SQL/database MCQs</label>
+<label><input type="checkbox">50 Kafka/RabbitMQ MCQs</label>
+<label><input type="checkbox">Solve SQL query questions without looking at answers</label>
+</div>
+<div class="target">Daily target: 90%+</div>
+</div></section>
+
+<section class="day">
+<div class="dayhead"><h2>Day 7 — API Security + Cloud</h2><span class="hours">4–5 hours</span></div>
+<div class="body">
+<div class="topic"><h3>Study — 2.5 hrs <span class="priority">VERY HIGH</span></h3>
+<label><input type="checkbox">OWASP API Security Top 10 concepts</label>
+<label><input type="checkbox">Authentication vs authorization</label>
+<label><input type="checkbox">OAuth 2.0, OpenID Connect, JWT, API keys</label>
+<label><input type="checkbox">TLS/SSL and mutual TLS</label>
+<label><input type="checkbox">CORS and CSRF</label>
+<label><input type="checkbox">Input validation, SQL injection, XSS, XXE</label>
+<label><input type="checkbox">Secrets management</label>
+<label><input type="checkbox">Rate limiting and throttling</label>
+<label><input type="checkbox">AWS fundamentals: EC2, S3, RDS, Lambda, API Gateway</label>
+<label><input type="checkbox">AWS IAM, networking, monitoring and deployment models</label>
+</div>
+<div class="topic"><h3>Practice — 1.5–2 hrs</h3>
+<label><input type="checkbox">80 Security MCQs</label>
+<label><input type="checkbox">50 AWS/Cloud MCQs</label>
+</div>
+<div class="target">Daily target: 90%+</div>
+</div></section>
+
+<section class="day">
+<div class="dayhead"><h2>Day 8 — DevOps + Containers + Monitoring + Performance</h2><span class="hours">4–5 hours</span></div>
+<div class="body">
+<div class="topic"><h3>Study — 2.5 hrs</h3>
+<label><input type="checkbox">Git, branching strategies, CI/CD</label>
+<label><input type="checkbox">Jenkins, GitHub Actions, GitLab CI/CD concepts</label>
+<label><input type="checkbox">Docker image/container/Dockerfile/Compose</label>
+<label><input type="checkbox">Kubernetes: Pod, Deployment, Service, Ingress, ConfigMap, Secret</label>
+<label><input type="checkbox">Scaling, rolling updates, container security</label>
+<label><input type="checkbox">ELK, Splunk, Prometheus, Grafana</label>
+<label><input type="checkbox">Health checks, metrics, distributed tracing</label>
+<label><input type="checkbox">JVM tuning, GC, memory leaks, thread optimization</label>
+<label><input type="checkbox">API/database performance, caching, Redis</label>
+<label><input type="checkbox">Load testing, stress testing, scalability</label>
+</div>
+<div class="topic"><h3>Practice — 1.5–2 hrs</h3>
+<label><input type="checkbox">100 mixed DevOps/Monitoring/Performance MCQs</label>
+<label><input type="checkbox">Revise Kubernetes objects from memory</label>
+</div>
+<div class="target">Daily target: 85–90%+</div>
+</div></section>
+
+<section class="day">
+<div class="dayhead"><h2>Day 9 — Software Engineering + Full Mock Test</h2><span class="hours">4–5 hours</span></div>
+<div class="body">
+<div class="topic"><h3>Revision — 1.5 hrs</h3>
+<label><input type="checkbox">SDLC and Agile/Scrum</label>
+<label><input type="checkbox">Code review and version control</label>
+<label><input type="checkbox">Unit/integration/API testing</label>
+<label><input type="checkbox">Mocking, SonarQube, static analysis</label>
+<label><input type="checkbox">Secure SDLC and DevSecOps</label>
+<label><input type="checkbox">Documentation standards</label>
+</div>
+<div class="mock"><b>Full Mock — 2.5 hrs</b><br>
+<label><input type="checkbox">Attempt exactly 125 questions in 150 minutes</label>
+<label><input type="checkbox">Do not look at notes during the test</label>
+<label><input type="checkbox">Record score and topic-wise mistakes</label>
+<label><input type="checkbox">Because the real exam has no negative marking, practice answering every question</label>
+</div>
+<div class="target">Target: 110+/125 on first full mock; 119+/125 is the 95% goal.</div>
+</div></section>
+
+<section class="day">
+<div class="dayhead"><h2>Day 10 — Final Revision + Mock + Weak Areas</h2><span class="hours">4–5 hours</span></div>
+<div class="body">
+<div class="topic"><h3>First 2 hrs — High-yield revision</h3>
+<label><input type="checkbox">Java Collections + OOP + Streams + Concurrency</label>
+<label><input type="checkbox">JVM + Design Patterns</label>
+<label><input type="checkbox">Spring Boot + JPA + Security</label>
+<label><input type="checkbox">REST + HTTP + API versioning + idempotency</label>
+<label><input type="checkbox">Microservices + Saga + Circuit Breaker + CQRS</label>
+<label><input type="checkbox">SQL + ACID + transactions + indexing</label>
+<label><input type="checkbox">Kafka + RabbitMQ</label>
+<label><input type="checkbox">OWASP API Security + OAuth2/JWT</label>
+<label><input type="checkbox">AWS + Docker + Kubernetes + CI/CD</label>
+</div>
+<div class="mock"><b>Final Mock — 2.5 hrs</b><br>
+<label><input type="checkbox">Attempt 125 questions / 150 minutes</label>
+<label><input type="checkbox">Aim for 119+/125</label>
+<label><input type="checkbox">Review only mistakes and weak topics</label>
+<label><input type="checkbox">Do not start a large new topic after the final mock</label>
+</div>
+<div class="target">Final goal: 119+/125 (95%+)</div>
+</div></section>
+
+<header>
+<h2>Exam-Day Strategy</h2>
+<ul>
+<li><b>125 questions / 150 minutes</b> → average about 72 seconds per question.</li>
+<li><b>No negative marking</b> → attempt every question.</li>
+<li>First pass: answer easy questions quickly.</li>
+<li>Second pass: return to calculation/conceptual questions.</li>
+<li>Keep the last 10–15 minutes for unanswered questions and review.</li>
+<li>Your strongest areas should be API, microservices, SQL and backend architecture. Use preparation time to close the Java/Spring gaps.</li>
+</ul>
+</header>
+
+<footer>
+Source basis: RITES Ltd. recruitment advertisement, VC No. RG/15/26 Manager (API Developer).
+The advertisement states the written test has 125 objective questions, 2.5 hours and no negative marking; final weightage is Written Test 60% + Interview 40%.
+This checklist is a preparation plan derived from the official syllabus, not an official RITES question paper or prediction.
+</footer>
+</div>
+</body>
+</html>
