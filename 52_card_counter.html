@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Card Counter</title>
+<style>
+* { box-sizing: border-box; }
+
+:root {
+    color-scheme: light;
+    --page-bg: #f0f5f1;
+    --text-color: #17221b;
+    --box-bg: #fff;
+    --box-text-color: #17221b;
+    --box-edge: #24724f;
+    --box-shadow: rgb(20 49 34 / 24%);
+    --border-color: #24724f;
+    --control-bg: #fff;
+    --red-color: #d00;
+}
+
+body.dark {
+    color-scheme: dark;
+    --page-bg: #17211b;
+    --text-color: #f1f5f2;
+    --box-bg: #26352c;
+    --box-text-color: #f1f5f2;
+    --box-edge: #12603e;
+    --box-shadow: rgb(0 0 0 / 40%);
+    --border-color: #85b99c;
+    --control-bg: #26352c;
+    --red-color: #ff7373;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: var(--page-bg);
+    color: var(--box-text-color);
+}
+
+.board {
+    width: 100%;
+    max-width: 650px;
+    margin: 20px auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 45px repeat(4, 1fr);
+    gap: 10px;
+    align-items: center;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+.theme-toggle {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background: var(--control-bg);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.number {
+    font-size: 24px;
+    text-align: center;
+}
+
+.suit {
+    text-align: center;
+    font-size: 32px;
+    height: 40px;
+}
+
+.suit-total {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.box {
+    appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    width: 100%;
+    height: 100px;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text-color);
+    cursor: pointer;
+    position: relative;
+    isolation: isolate;
+    touch-action: manipulation;
+    transition: filter 180ms ease;
+}
+
+.box::before,
+.box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.box::before {
+    z-index: -2;
+    background: var(--box-shadow);
+    transform: translateY(5px);
+    transition: transform 180ms ease;
+}
+
+.box::after {
+    z-index: -1;
+    background: var(--box-edge);
+}
+
+.box span {
+    display: flex;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: inherit;
+    background: var(--box-bg);
+    color: var(--text-color);
+    font-size: 28px;
+    font-weight: bold;
+    transform: translateY(-4px);
+    transition: transform 180ms ease;
+}
+
+.box:hover {
+    filter: brightness(1.04);
+}
+
+.box:hover span {
+    transform: translateY(-6px);
+}
+
+.box:active span {
+    transform: translateY(0);
+}
+
+.box:active::before {
+    transform: translateY(2px);
+}
+
+.box:focus-visible,
+.theme-toggle:focus-visible {
+    outline: 3px solid #e0a62e;
+    outline-offset: 4px;
+}
+ .red{
+     color: var(--red-color);
+    }
+
+@media (max-width: 500px) {
+    body { padding: 10px; }
+
+    .grid {
+        grid-template-columns: 35px repeat(4, 1fr);
+        gap: 6px;
+    }
+
+    .box {
+        height: 75px;
+    }
+
+    .number {
+        font-size: 20px;
+    }
+
+    .suit {
+        font-size: 25px;
+    }
+    .red{
+        color: red;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="board">
+    <div class="toolbar">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">Dark theme</button>
+    </div>
+    <div class="grid">
+
+        <div></div>
+        <div class="suit">♣</div>
+        <div class="suit red">♦</div>
+        <div class="suit">♠</div>
+        <div class="suit red">♥</div>
+
+        <div class="number">4</div>
+        <button class="box" type="button" aria-label="4 of clubs"><span></span></button>
+        <button class="box" type="button" aria-label="4 of diamonds"><span></span></button>
+        <button class="box" type="button" aria-label="4 of spades"><span></span></button>
+        <button class="box" type="button" aria-label="4 of hearts"><span></span></button>
+
+        <div class="number">3</div>
+        <button class="box" type="button" aria-label="3 of clubs"><span></span></button>
+        <button class="box" type="button" aria-label="3 of diamonds"><span></span></button>
+        <button class="box" type="button" aria-label="3 of spades"><span></span></button>
+        <button class="box" type="button" aria-label="3 of hearts"><span></span></button>
+
+        <div class="number">2</div>
+        <button class="box" type="button" aria-label="2 of clubs"><span></span></button>
+        <button class="box" type="button" aria-label="2 of diamonds"><span></span></button>
+        <button class="box" type="button" aria-label="2 of spades"><span></span></button>
+        <button class="box" type="button" aria-label="2 of hearts"><span></span></button>
+
+    </div>
+    <br>
+    <div class="grid">
+          <div class="number">Total</div>
+        <div class="suit-total">0</div>
+        <div class="suit-total red">0</div>
+        <div class="suit-total">0</div>
+        <div class="suit-total red">0</div>
+    </div>
+</div>
+
+<script>
+const boxes = [...document.querySelectorAll(".box")];
+const suitTotals = [...document.querySelectorAll(".suit-total")];
+const cardRanks = [4, 3, 2];
+
+function updateCount(box, change) {
+    const count = Math.max(0, Number(box.dataset.count || 0) + change);
+    box.dataset.count = count;
+    box.classList.toggle("played", count > 0);
+    box.querySelector("span").textContent = count || "";
+    box.setAttribute("aria-label", `${box.getAttribute("aria-label").split(", count ")[0]}, count ${count}`);
+
+    suitTotals.forEach((total, suitIndex) => {
+        const suitCount = boxes.reduce((sum, cardBox, boxIndex) => {
+            const rank = cardRanks[Math.floor(boxIndex / 4)];
+            return sum + (boxIndex % 4 === suitIndex ? Number(cardBox.dataset.count || 0) * rank : 0);
+        }, 0);
+        total.textContent = suitCount;
+    });
+}
+
+document.querySelector("#themeToggle").addEventListener("click", event => {
+    const isDark = document.body.classList.toggle("dark");
+    event.currentTarget.textContent = isDark ? "Light theme" : "Dark theme";
+    event.currentTarget.setAttribute("aria-pressed", String(isDark));
+});
+
+boxes.forEach(box => {
+    let clickTimer;
+
+    box.addEventListener("click", event => {
+        if (event.detail === 1) {
+            clickTimer = setTimeout(() => updateCount(box, 1), 500);
+        } else if (event.detail === 2) {
+            clearTimeout(clickTimer);
+        } else if (event.detail === 0) {
+            updateCount(box, 1);
+        }
+    });
+
+    box.addEventListener("dblclick", () => {
+        clearTimeout(clickTimer);
+        updateCount(box, -1);
+    });
+});
+</script>
+
+</body>
+</html>
